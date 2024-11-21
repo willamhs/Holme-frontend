@@ -1,0 +1,57 @@
+@if(prices) {
+    <h2>Precios Disponibles</h2>
+
+    <div class="table-controls">
+        <button mat-raised-button class="editar-btn" (click)="createPrice()">
+          Nuevo Precio
+        </button>
+        <div class="input-label"> 
+            <mat-label>Filtrar</mat-label>
+            <input matInput  [(ngModel)]="filterText" (input)="applyFilter($event)"  />
+        </div>
+    </div>
+
+    <div class="table-container">
+        <mat-table [dataSource]="filteredPrices" class="mat-table">
+
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef> Precio (S/.) </mat-header-cell>
+                <mat-cell *matCellDef="let price"> {{ price.price }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>   
+                <mat-cell *matCellDef="let price"> {{ price.description }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                <mat-cell *matCellDef="let price">
+                <div class="button-group">
+                    <button class="editar-btn" (click)="editPrice(price.id)">
+                        Editar
+                    </button>
+                    <button class="eliminar-btn" (click)="deletePrice(price.id)">
+                        Eliminar
+                    </button>
+                </div>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
+
+        <mat-paginator
+                [length]="totalElements"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 20]"
+                (page)="onPageChange($event)"
+            ></mat-paginator>
+
+    </div>
+}@else {
+    <p>No hay precios registradas</p>
+    }

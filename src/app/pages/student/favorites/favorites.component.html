@@ -1,0 +1,34 @@
+<div class="favorites-container">
+  <header class="favorites-header">
+    <h1 class="favorites-title">
+      <mat-icon>favorite</mat-icon>
+      Charlas Favoritas
+    </h1>
+    <p class="favorites-subtitle">Descubre y gestiona tus charlas preferidas</p>
+  </header>
+
+  @if (isLoading) {
+    <div class="loading-container">
+      <mat-spinner color="accent"></mat-spinner>
+      <p>Cargando tus charlas favoritos...</p>
+    </div>
+  } @else if (favoriteEvents.length > 0) {
+    <div class="events-grid">
+      @for (event of favoriteEvents; track event.id) {
+        <app-event-card
+          [event]="event"
+          class="event-card"
+        ></app-event-card>
+      }
+    </div>
+  } @else {
+    <div class="no-events">
+      <mat-icon>sentiment_dissatisfied</mat-icon>
+      <h2>¡Aún no tienes charlas favoritas!</h2>
+      <p>Explora nuestras charlas y marca lo que más te interesen.</p>
+      <button mat-raised-button color="primary" routerLink="/student/catalog">
+        Explorar charlas
+      </button>
+    </div>
+  }
+</div>

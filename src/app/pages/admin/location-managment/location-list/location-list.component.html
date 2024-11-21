@@ -1,0 +1,62 @@
+@if(locations) {
+    <h2>Ubicaciones Disponibles</h2>
+
+    <div class="table-controls">
+        <button mat-raised-button class="editar-btn" (click)="createLocation()">
+          Nueva Ubicacion
+        </button>
+        <div class="input-label"> 
+            <mat-label>Filtrar</mat-label>
+            <input matInput  [(ngModel)]="filterText" (input)="applyFilter($event)"  />
+        </div>
+    </div>
+
+    <div class="table-container">
+        <mat-table [dataSource]="filteredLocations" class="mat-table">
+
+            <ng-container matColumnDef="location">
+                <mat-header-cell *matHeaderCellDef> Ubicacion </mat-header-cell>
+                <mat-cell *matCellDef="let location"> {{ location.location }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="city">
+                <mat-header-cell *matHeaderCellDef> Ciudad </mat-header-cell>   
+                <mat-cell *matCellDef="let location"> {{ location.city }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="country">
+                <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>   
+                <mat-cell *matCellDef="let location"> {{ location.country }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                <mat-cell *matCellDef="let category">
+                <div class="button-group">
+                    <button class="editar-btn" (click)="editLocation(category.id)">
+                        Editar
+                    </button>
+                    <button class="eliminar-btn" (click)="deleteLocation(category.id)">
+                        Eliminar
+                    </button>
+                </div>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
+
+        <mat-paginator
+                [length]="totalElements"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 20]"
+                (page)="onPageChange($event)"
+            ></mat-paginator>
+
+    </div>
+}@else {
+    <p>No hay categorias registradas</p>
+    }

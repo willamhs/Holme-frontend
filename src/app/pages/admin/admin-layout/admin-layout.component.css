@@ -1,0 +1,87 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.sidebar {
+  width: 280px;
+ 
+  background: linear-gradient(135deg, #3f51b5, #2196f3);
+  color: white;
+  box-shadow: 3px 0 6px rgba(0,0,0,0.24);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.hide-sidebar-btn {
+  color: white;
+}
+
+.mat-nav-list {
+  padding-top: 16px;
+}
+
+.mat-nav-list a {
+  color: white;
+  margin-bottom: 8px;
+  border-radius: 0 25px 25px 0;
+  transition: all 0.3s ease;
+}
+
+.mat-nav-list a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mat-nav-list a.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.mat-nav-list .mat-icon {
+  margin-right: 16px;
+}
+
+.content {
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  position: relative;
+}
+
+.toggle-sidebar {
+  position: fixed;
+  left: 20px;
+  top: 80px;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .toggle-sidebar {
+    left: 16px;
+    top: 76px;
+  }
+}

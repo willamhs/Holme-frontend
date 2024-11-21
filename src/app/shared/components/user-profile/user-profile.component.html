@@ -1,0 +1,51 @@
+<!-- user-profile.component.html -->
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="card-header">
+      <h2 class="card-title">Perfil de Usuario</h2>
+    </div>
+    
+    <div class="card-content">
+      <div class="profile-info">
+        <div class="avatar-section">
+          <div class="avatar">
+            <img 
+              [src]="profile.profilePicPath | apiImg" 
+              [alt]="profile.firstName + ' ' + profile.lastName"
+              class="avatar-image"
+            >
+          </div>
+          <div class="user-basic-info">
+            <h3 class="user-name">{{ profile.firstName }} {{ profile.lastName }}</h3>
+            <p class="user-career">{{ profile.occupation }}</p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <mat-icon class="info-icon">person</mat-icon>
+            <span class="info-label">Nombre</span>
+            <span class="info-value">{{ profile.firstName }} {{ profile.lastName }}</span>
+          </div>
+          <div class="info-item">
+            <mat-icon class="info-icon">email</mat-icon>
+            <span class="info-label">Email</span>
+            <span class="info-value">{{ profile.email }}</span>
+          </div>
+          <div class="info-item">
+            <mat-icon class="info-icon">school</mat-icon>
+            <span class="info-label">occupation</span>
+            <span class="info-value">{{ profile.occupation }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card-footer">
+      <button mat-raised-button color="primary" (click)="navigateToUpdateProfile()" class="update-button">
+        <mat-icon>edit</mat-icon>
+        Editar Perfil
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,218 @@
+:host {
+  display: block;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.inscription-history-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inscription-history-title {
+  text-align: center;
+  color: #00897b;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+
+}
+
+.inscription-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.inscription-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(13, 33, 161, 0.1);
+  background-color: #ffffff;
+}
+
+.inscription-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(13, 33, 161, 0.2);
+}
+
+mat-card-header {
+  padding: 1rem;
+  color: white;
+}
+
+mat-card-header.status-paid {
+  background-color: #4CAF50;
+}
+
+mat-card-header.status-pending {
+  background-color: #00897b;
+}
+
+mat-card-header.status-failed {
+  background-color: #F44336;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.event-icon {
+  margin-right: 0.5rem;
+}
+
+.status-chip {
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.inscription-total {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0D21A1;
+  margin: 1rem 0;
+  text-align: right;
+}
+
+mat-expansion-panel {
+  box-shadow: none;
+  background-color: transparent;
+  border: 1px solid rgba(13, 33, 161, 0.1);
+  border-radius: 8px;
+}
+
+.inscription-items {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.event-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(13, 33, 161, 0.15);
+}
+
+.event-image, .event-image-placeholder {
+  height: 120px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.event-image-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.event-details {
+  padding: 1rem;
+}
+
+.event-details h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #0D21A1;
+}
+
+.event-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #1E2019;
+}
+
+.event-quantity, .event-price {
+  display: flex;
+  align-items: center;
+}
+
+.event-quantity mat-icon, .event-price mat-icon {
+  font-size: 1rem;
+  margin-right: 0.3rem;
+  color: #00897b;
+}
+
+.no-inscriptions {
+  text-align: center;
+  color: #1E2019;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(13, 33, 161, 0.1);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #00897b;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+@media (max-width: 768px) {
+  .inscription-history-title {
+    font-size: 2rem;
+  }
+
+  .inscription-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inscription-items {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    padding: 1rem 0.5rem;
+  }
+
+  .inscription-history-title {
+    font-size: 1.8rem;
+  }
+
+  .event-card {
+    display: flex;
+    align-items: center;
+  }
+
+  .event-image, .event-image-placeholder {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+
+  .event-details {
+    flex-grow: 1;
+  }
+}

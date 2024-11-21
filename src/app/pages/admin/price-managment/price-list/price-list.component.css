@@ -1,0 +1,115 @@
+/* Estilo global para el título */
+h2 {
+    color: #3f51b5; /* Naranja */
+    margin-bottom: 20px;
+}
+
+.table-container{
+    color: black;
+}
+  
+/* Estilos para los controles de la tabla (botón y filtro) */
+.table-controls {
+    display: flex;
+    justify-content: space-between; /* Separar los elementos */
+    align-items: center;
+    margin-bottom: 20px;
+ }
+  
+.table-controls button {
+    margin-right: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+  
+.input-label input{
+    background-color: transparent;
+    border: 2px solid #3f51b5;
+    margin-left: 10px;
+}
+
+/* Estilos para la tabla */
+.mat-table {
+    width: 80%; /* Reducir el tamaño de la tabla */
+    margin: 0 auto; /* Centrar la tabla */
+    background-color: transparent; /* Fondo transparente */
+    border-collapse: collapse;
+    color: black;
+}
+  
+.mat-header-cell,
+.mat-cell {
+    border: none;
+    border-bottom: 2px solid #3f51b5;
+    padding: 10px 15px; /* Espaciado interno en celdas */
+    text-align: center; /* Centrado del texto */
+    color: black;
+    
+}
+
+.mat-header-row {
+    border-bottom: 3px solid #3f51b5;
+}
+  
+.mat-column-name {
+    text-align: left; /* Alinear el texto de la columna 'name' a la izquierda */
+    color: black;
+    font-weight: 500;
+    font-size: medium;
+}
+  
+.mat-column-actions {
+    text-align: right;
+    color: black;
+    font-weight: 500;
+    font-size: medium;
+}
+
+/* Cambiar el color de los botones con clase 'editar-btn' */
+.editar-btn {
+    background-color: #3f51b5;  /* Color de fondo naranja */
+    color: white;               /* Color del texto blanco */
+    border-radius: 10px;   
+    padding: 5px 30px;
+    border: none;
+}
+
+.editar-btn:hover {
+    background-color: #1664a4; /* Color de fondo cuando el botón se pasa por encima */
+}
+
+.eliminar-btn {
+    background-color: rgba(245, 24, 24, 0.87);  /* Color de fondo naranja */
+    color: white;               /* Color del texto blanco */
+    border-radius: 10px;   
+    padding: 5px 30px;
+    margin-left: 20px;
+    border: none;
+}
+
+.eliminar-btn:hover {
+    background-color: rgba(247, 18, 18, 0.925);  /* Color de fondo cuando el botón se pasa por encima */
+}
+  
+/* Estilos para el paginador */
+mat-paginator {
+    display: flex;
+    justify-content: center; /* Centrado del paginador */
+    width: 100%;
+    margin: 20px auto;
+    font-size: medium;
+    color: white;
+    background-color:#1a1a1a; /* Fondo naranja */
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+}
+  
+mat-paginator .mat-paginator-range-actions {
+    justify-content: center; /* Centrar el contenido dentro del paginador */
+}
+  
+mat-paginator .mat-paginator-page-size {
+    margin-left: 10px;
+}
+  

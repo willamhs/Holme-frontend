@@ -1,0 +1,47 @@
+<div class="layout-container">
+  <app-navbar></app-navbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" [opened]="!isMobile" class="sidebar" [fixedInViewport]="true" [fixedTopGap]="64">
+      <div class="sidebar-header">
+        <h2>Administrador</h2>
+        <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Ocultar menú" class="hide-sidebar-btn">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </div>
+      <mat-nav-list>
+        <a mat-list-item routerLink="events/list" routerLinkActive="active">
+          <mat-icon>event</mat-icon>
+          <span>Charlas</span>
+        </a>
+        <a mat-list-item routerLink="categories/list" routerLinkActive="active">
+          <mat-icon>category</mat-icon>
+          <span>Categorías</span>
+        </a>
+        <a mat-list-item routerLink="locations/list" routerLinkActive="active">
+          <mat-icon>place</mat-icon>
+          <span>Ubicaciones</span>
+        </a>
+        <a mat-list-item routerLink="prices/list" routerLinkActive="active">
+          <mat-icon>attach_money</mat-icon>
+          <span>Precios</span>
+        </a>
+        <a mat-list-item routerLink="reports/sales" routerLinkActive="active">
+          <mat-icon>assignment</mat-icon>
+          <span>Reporte de Inscripciones</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <main class="content">
+        <button mat-fab color="primary" class="toggle-sidebar" (click)="sidenav.toggle()" matTooltip="Mostrar/Ocultar menú">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <app-footer></app-footer>
+</div>

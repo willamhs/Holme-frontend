@@ -1,0 +1,171 @@
+<div class="all-container">
+    <h1>@if(eventId) { Editar } @else { Nuevo } Evento</h1>
+
+    @if(errors.length) {
+        <div class="alert alert-danger mt-5">
+          <ul>
+            @for (error of errors; track error ) {
+            <li>{{ error }}</li>
+            }
+          </ul>
+        </div>
+    } @if(form) {
+
+        <div class="event-form-container">
+            <div class="col-event-form">
+                <form
+                    [formGroup]="form"
+                    (ngSubmit)="save()"
+                    class="event-form"
+                    autocomplete="off"
+                >
+
+                    <div class="form-field">
+                        
+                        <mat-label>Nombre</mat-label>
+                        <input
+                            matInput
+                            type="text"
+                            placeholder="Nombre del evento"
+                            formControlName="name"
+                            class="text-input"
+                        />
+                        <mat-error>
+                            @if(form.get('name')!.hasError('required')) { Este título es
+                                obligatorio } @else if
+                                (form.get('name')?.hasError('maxlength')) { El título debe tener
+                                250 caracteres como máximo }
+                        </mat-error>
+                        
+                    </div>
+
+                    <hr>
+
+                    <div class="form-field" >
+                        <mat-label>Capacidad</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            placeholder="Capacidad de la charla"
+                            formControlName="capacity"
+                            class="text-input"
+                        />
+                        <mat-error>
+                            @if(form.get('capacity')!.hasError('required')) { La capacidad es
+                                obligatoria } @else if(form.get('capacity')?.hasError('min')) {
+                                La capacidad debe ser mayor a 0 }
+                        </mat-error>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-field">
+                        <mat-label>Descripción</mat-label>
+                        <textarea
+                            matInput
+                            placeholder="Descripción de la charla"
+                            formControlName="description"
+                            class="text-input"
+                        ></textarea>
+                        <mat-error>
+                            @if(form.get('description')!.hasError('required')) { La descripción es
+                                obligatoria } @else if
+                                (form.get('description')?.hasError('maxlength')) { La descripción
+                                debe tener 500 caracteres como máximo }
+                        </mat-error>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-field">
+                        <mat-label>Categorias</mat-label>
+                        <div class="text-input">
+                            <mat-select formControlName="categoryId">
+                                @for (category of categories; track category.id) {
+                                    <mat-option [value]="category.id">{{category.name}}</mat-option>
+                                }
+                            </mat-select>
+                        </div>
+                        <mat-error>
+                            @if(form.get('categoryId')!.hasError('required')) { La categoría es
+                                obligatoria }
+                        </mat-error>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-field">
+                        <mat-label>Ubicación</mat-label>
+                        <div class="text-input">
+                            <mat-select formControlName="locationId">
+                                @for (location of locations; track location.id) {
+                                    <mat-option [value]="location.id">{{location.location}}</mat-option>
+                                }
+                            </mat-select>
+                        </div>
+                        <mat-error>
+                            @if(form.get('locationId')!.hasError('required')) { La ubicación es
+                                obligatoria }
+                        </mat-error>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-field">
+                        <mat-label>Precio</mat-label>
+                        <div class="text-input">
+                            <mat-select formControlName="priceId">
+                                @for (price of prices; track price.id) {
+                                    <mat-option [value]="price.id">{{price.price}}</mat-option>
+                                }
+                            </mat-select>
+                        </div>
+                        <mat-error>
+                            @if(form.get('priceId')!.hasError('required')) { El precio es
+                                obligatorio }
+                        </mat-error>
+                    </div>
+
+                    <hr>
+
+                    <div class="file-upload">
+                        <label>Imagen</label>
+                        <input
+                            type="file"
+                            class="form-control"
+                            accept=".jpg,.jpeg,.png"
+                            (change)="uploadFile($event, 'imagePath')"
+                        />
+                        <div class="small text-muted">
+                            Ruta actual: {{ form.get('imagePath')?.value }} 
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="action-buttons">
+                        <button mat-button type="button" class="cancel-button" routerLink="/admin/events/list">
+                          Cancelar
+                        </button>
+                        <button mat-raised-button class="confirmd-button">
+                          @if(eventId) { Actualizar } @else { Crear } evento
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="img-preview">
+                @if(form.get('imagePath')?.value) {
+                <img
+                  [src]="form.get('imagePath')?.value | apiImg"
+                  alt="Portada"
+                  class="img-thumbnail"
+                />
+                } @else {
+                <p>Sin portada</p>
+                }
+            </div>
+        </div>        
+    }
+
+</div>

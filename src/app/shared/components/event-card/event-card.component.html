@@ -1,0 +1,25 @@
+<div class="event-card" (click)="openEventDetails()">
+  <div class="event-image-container">
+    <img [src]="event.imagePath | apiImg" [alt]="event.name" class="event-image">
+    <div class="event-overlay">
+      <span class="event-category">{{ event.categoryName }}</span>
+    </div>
+  </div>
+  <div class="event-content">
+    <h3 class="event-title">{{ event.name }}</h3>
+    <p class="event-location">
+      <mat-icon>location_on</mat-icon>
+      {{ event.locationName }}
+    </p>
+    <p class="event-price" [ngClass]="{'free': event.priceValue === 0}">
+      <mat-icon>{{ event.priceValue === 0 ? 'card_giftcard' : 'attach_money' }}</mat-icon>
+      {{ event.priceValue === 0 ? 'Gratis' : (event.priceValue | currency:'S/.') }}
+    </p>
+    <div class="event-actions">
+      <button mat-button color="primary" class="details-button">
+        Ver detalles
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

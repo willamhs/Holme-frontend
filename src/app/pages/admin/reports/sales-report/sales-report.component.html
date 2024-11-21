@@ -1,0 +1,18 @@
+<div class="sales-report-container">
+    <div class="report-card">
+      <h2 class="report-title">Reporte de Inscripciones a charlas</h2>
+      <div class="chart-wrapper">
+        <canvas #salesChart></canvas>
+      </div>
+    </div>
+    <div class="event-details-container">
+      <h3 class="details-title">Detalles de Inscripciones</h3>
+      <div class="event-summary-grid">
+        <div *ngFor="let event of reportData" class="event-summary-card">
+          <h4 class="event-name">{{ event.nameEvent }}</h4>
+          <p class="event-quantity">{{ event.quantity }}</p>
+          <p class="event-label">inscripciones</p>
+        </div>
+      </div>
+    </div>
+  </div>

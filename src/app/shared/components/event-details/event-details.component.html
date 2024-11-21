@@ -1,0 +1,107 @@
+<div class="event-details-container" *ngIf="event && !isLoading && !error">
+  <div class="event-header" [style.backgroundImage]="'url(' + (event.imagePath | apiImg) + ')'">
+    <div class="event-header-overlay">
+      <h1>{{ event.name }}</h1>
+      <div class="event-tags">
+        <span class="event-tag category">{{ event.categoryName }}</span>
+        <span class="event-tag price">{{ event.priceValue | currency }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event-body">
+    <div class="event-main-info">
+      <div class="event-meta">
+        <div class="meta-item">
+          <mat-icon>location_on</mat-icon>
+          <span>{{ event.locationName }}, {{ event.cityName }}, {{ event.countryName }}</span>
+        </div>
+        <div class="meta-item">
+          <mat-icon>event</mat-icon>
+          <span>{{ event.createdAt | date:'fullDate' }}</span>
+        </div>
+        <div class="meta-item">
+          <mat-icon>group</mat-icon>
+          <span>Capacidad: {{ event.capacity }} personas</span>
+        </div>
+      </div>
+
+      <div class="event-description">
+        <h2>Acerca de la charla</h2>
+        <p>{{ event.description }}</p>
+      </div>
+
+      <div class="event-schedule" *ngIf="eventSchedules && eventSchedules.length > 0">
+        <h2>Horarios de la charla</h2>
+        <div *ngFor="let schedule of eventSchedules" class="schedule-item">
+          <div class="schedule-date">{{ schedule.startDate | date:'shortDate' }} - {{ schedule.endDate | date:'shortDate' }}</div>
+          <div class="schedule-time">{{ schedule.scheduleStartHour }} - {{ schedule.scheduleEndHour }}</div>
+          <div class="schedule-description">{{ schedule.scheduleDescription }}</div>
+        </div>
+      </div>
+
+      <div class="event-actions">
+        <ng-container *ngIf="isAuthenticated && isStudent; else unauthenticatedActions">
+          <button class="btn-primary" 
+                  (click)="enrollInEvent()" 
+                  [disabled]="enrollmentStatus !== 'not-enrolled' || isEnrollLoading">
+            <mat-icon *ngIf="!isEnrollLoading">{{ getEnrollButtonIcon() }}</mat-icon>
+            <mat-spinner *ngIf="isEnrollLoading" diameter="24"></mat-spinner>
+            <span>{{ getEnrollButtonText() }}</span>
+          </button>
+          <button class="btn-secondary" 
+                  (click)="toggleFavorite()"
+                  [disabled]="isFavoriteLoading">
+            <mat-icon *ngIf="!isFavoriteLoading" [class.favorite]="isFavorite">favorite</mat-icon>
+            <mat-spinner *ngIf="isFavoriteLoading" diameter="24"></mat-spinner>
+            <span>{{ isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos' }}</span>
+          </button>
+        </ng-container>
+        <ng-template #unauthenticatedActions>
+          <p class="auth-message">Inicia sesión como cliente para inscribirte o agregar a favoritos</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="event-sidebar">
+      <div class="sidebar-card">
+        <h3>Detalles de la charla</h3>
+        <div class="sidebar-item">
+          <mat-icon>calendar_today</mat-icon>
+          <span>Creado: {{ event.createdAt | date:'shortDate' }}</span>
+        </div>
+        <div class="sidebar-item">
+          <mat-icon>update</mat-icon>
+          <span>Actualizado: {{ event.updatedAt | date:'shortDate' }}</span>
+        </div>
+      </div>
+    
+      <div *ngIf="isEnrolled && eventSchedule" class="sidebar-card enrolled-schedule">
+        <h3>¡Gracias por inscribirte!</h3>
+        <p>Asiste en uno de estos horarios:</p>
+        <div *ngFor="let item of eventSchedule" class="schedule-item">
+          <div class="schedule-date">{{ item.eventStartDate | date:'shortDate' }}</div>
+          <div class="schedule-time">{{ item.scheduleStart }} - {{ item.scheduleEnd }}</div>
+        </div>
+        <button mat-raised-button color="primary" class="calendar-button" (click)="goToCalendar()">
+          <mat-icon>event</mat-icon>
+          Revísalo en tu calendario personal
+        </button>
+      </div>
+    
+    </div>
+  </div>
+
+  <button class="fab-back" (click)="goBackToHome()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</div>
+
+<div *ngIf="isLoading" class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="error" class="error-message">
+  <mat-icon>error</mat-icon>
+  <span>{{ error }}</span>
+</div>

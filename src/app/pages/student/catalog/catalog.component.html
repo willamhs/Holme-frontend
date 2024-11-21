@@ -1,0 +1,105 @@
+<div class="catalog-container">
+  <header class="catalog-header">
+    <h1 class="catalog-title">Explora nuestras charlas con especialistas</h1>
+    <p class="catalog-subtitle">Descubre, conecta y participa en experiencias únicas</p>
+  </header>
+
+  <div class="search-filter-container">
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Buscar eventos..."
+        class="search-input"
+        [(ngModel)]="searchQuery"
+        (input)="applyFilters()"
+      />
+      <button class="search-button" (click)="applyFilters()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </button>
+    </div>
+    <button class="filter-button" (click)="toggleFilters()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+      </svg>
+      Filtros
+    </button>
+  </div>
+
+  @if (showFilters) {
+    <div class="filters-panel">
+      <div class="filter-group">
+        <label for="category">Categoría</label>
+        <select id="category" [(ngModel)]="selectedCategory" (change)="applyFilters()">
+          <option value="">Todas</option>
+          @for (category of categories; track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="location">Ubicación</label>
+        <select id="location" [(ngModel)]="selectedLocation" (change)="applyFilters()">
+          <option value="">Todas</option>
+          @for (location of locations; track location) {
+            <option [value]="location">{{ location }}</option>
+          }
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="country">País</label>
+        <select id="country" [(ngModel)]="selectedCountry" (change)="applyFilters()">
+          <option value="">Todos</option>
+          @for (country of countries; track country) {
+            <option [value]="country">{{ country }}</option>
+          }
+        </select>
+      </div>
+      <div class="filter-group price-range">
+        <label>Rango de Precio</label>
+        <div class="price-inputs">
+          <input 
+            type="number" 
+            [(ngModel)]="minPrice" 
+            (input)="applyFilters()" 
+            placeholder="Min"
+            min="0"
+          >
+          <span>-</span>
+          <input 
+            type="number" 
+            [(ngModel)]="maxPrice" 
+            (input)="applyFilters()" 
+            placeholder="Max"
+            min="0"
+          >
+        </div>
+      </div>
+      <button class="clear-filters" (click)="clearFilters()">Limpiar filtros</button>
+    </div>
+  }
+
+  @if (isLoading) {
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Cargando eventos emocionantes...</p>
+    </div>
+  } @else if (filteredEvents.length > 0) {
+    <div class="events-grid">
+      @for (event of filteredEvents; track event.id) {
+        <app-event-card
+          [event]="event"
+          class="event-card"
+        ></app-event-card>
+      }
+    </div>
+  } @else {
+    <div class="no-events">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p>¡Ups! No encontramos eventos. ¡Intenta con otros filtros!</p>
+    </div>
+  }
+</div>

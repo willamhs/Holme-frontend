@@ -1,0 +1,37 @@
+<div class="page-container">
+    <div class="category-container">
+        <h2>@if(categoryId) { Editar } @else { Crear } Categoria</h2>
+        <form
+            [formGroup]="form"
+            (ngSubmit)="save()"
+            class="category-form"
+            autocomplete="off"
+        >
+
+            <mat-form-field>
+                <mat-label class="custom-label">Nombre</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="Nombre de la categoria"
+                    formControlName="name"
+                    class="text-input"
+                >
+                <mat-error>
+                    @if(form.get('name')!.hasError('required')) { Este nombre es obligatorio }
+                </mat-error>
+            </mat-form-field>
+
+            <div class="close-btn">
+                <button mat-button type="button" class="cancel-button" routerLink="/admin/categories/list">
+                Cancelar
+                </button>
+                <button mat-raised-button class="confirm-button">
+                @if(categoryId) { Actualizar } @else { Crear } categoria
+                </button>
+            </div>
+
+        </form>
+    </div> 
+</div>
+

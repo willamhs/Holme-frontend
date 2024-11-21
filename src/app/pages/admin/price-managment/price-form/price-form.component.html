@@ -1,0 +1,52 @@
+<div class="page-container">
+    <div class="category-container">
+        <h2>@if(priceId) { Editar } @else { Crear } Precio</h2>
+        <form
+            [formGroup]="form"
+            (ngSubmit)="save()"
+            class="category-form"
+            autocomplete="off"
+        >
+            <mat-form-field>
+                <mat-label class="custom-label">Precio</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    placeholder="Precio"
+                    formControlName="price"
+                    class="text-input"
+                >
+                <mat-error>
+                    @if(form.get('price')!.hasError('required')) { Este campo es obligatorio }  
+                    @if(form.get('price')!.hasError('min')) { Solo se permiten numeros positivos } 
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="custom-label">Descripcion</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="Descripcion"
+                    formControlName="description"
+                    class="text-input"
+                >
+                <mat-error>
+                    @if(form.get('description')!.hasError('required')) { Este campo es obligatorio }
+                    @if(form.get('description')!.hasError('minlength')) { La descripcion debe tener al menos 5 caracteres }
+                    @if(form.get('description')!.hasError('maxlength')) { La descripcion debe tener menos de 250 caracteres }
+                </mat-error>
+            </mat-form-field>
+
+            <div class="close-btn">
+                <button mat-button type="button" class="cancel-button" routerLink="/admin/prices/list">
+                Cancelar
+                </button>
+                <button mat-raised-button class="confirm-button">
+                @if(priceId) { Actualizar } @else { Crear } precio
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

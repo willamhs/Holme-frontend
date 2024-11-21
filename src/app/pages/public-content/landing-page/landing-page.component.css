@@ -1,0 +1,261 @@
+
+  /* Estilos de la sección principal */
+  .main-section {
+    background-color: #eef0f2;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .main-text {
+    max-width: 50%;
+  }
+  
+  .main-text h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .main-text p {
+    font-size: 20px;
+    margin: 20px 0;
+    color: #666;
+  }
+  
+  .main-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Nueva sección de eventos */
+  .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  
+  }
+  
+  .eventos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 60%; /* Asegura que la columna de eventos ocupe el 60% */
+  }
+  
+  .evento-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .evento-card img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .bienvenida {
+    width: 35%; /* Asegura que la columna de bienvenida ocupe el 35% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding: 20px;
+  }
+  
+  .bienvenida h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .bienvenida p {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .botones {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Estilos para la sección de testimonios */
+  .testimonials {
+    padding: 50px 0;
+    background-color: #eef0f2;
+  }
+  
+  .testimonials-header h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .testimonials-header p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .testimonial-item {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .testimonial-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .testimonial-item h4 {
+    font-size: 22px;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .testimonial-item p {
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+  }
+  
+  /* Estilos de la sección de características */
+  .features-section {
+    background-color: #0d21a1;
+    padding: 50px 0;
+    color: white;
+  
+    /* Flexbox para alinear en una fila */
+    display: flex;
+    justify-content: space-around; /* Distribuye las características de manera uniforme */
+    align-items: center; /* Alinea los elementos verticalmente */
+  
+  }
+  
+  .features-section h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  .feature-item {
+    margin-bottom: 30px;
+  
+    text-align: center; /* Para centrar el contenido dentro de cada característica */
+    max-width: 300px; /* Limita el ancho de cada característica */
+  }
+  
+  .feature-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+  }
+  
+  .feature-item h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .feature-item p {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+  
+  .cta-section {
+    margin-top: 30px;
+  }
+  
+  .cta-section p {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .btn-main {
+    background-color: #ff9220;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  
+  .btn-main:hover {
+    background-color: #ff7500;
+    color: white;
+  }
+  
+  /* Estilos de la sección promocional */
+  .promo-section {
+    background-color: #f3f4f6; /* Fondo suave */
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+  }
+  
+  .promo-content {
+    max-width: 800px;
+    margin: 0 auto;
+  
+    position: relative;
+    z-index: 1;
+  }
+  
+  .promo-content h2 {
+    font-size: 36px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .promo-image {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .promo-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    z-index: 2;
+  }
+  
+  .btn-registrarse {
+    background-color: #ff9220;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .btn-registrarse:hover {
+    background-color: #e07c00;
+  }
+  
+  .promo-content p {
+    font-size: 18px;
+    color: #666;
+  }

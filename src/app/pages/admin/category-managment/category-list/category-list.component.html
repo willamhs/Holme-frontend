@@ -1,0 +1,52 @@
+@if(categories) {
+    <h2>Categorias Disponibles</h2>
+
+    <div class="table-controls">
+        <button mat-raised-button class="editar-btn" (click)="createCategory()">
+          Nueva Categoria
+        </button>
+        <div class="input-label"> 
+            <mat-label>Filtrar</mat-label>
+            <input matInput  [(ngModel)]="filterText" (input)="applyFilter($event)"  />
+        </div>
+    </div>
+
+    <div class="table-container">
+        <mat-table [dataSource]="filteredCategories" class="mat-table">
+        
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+                <mat-cell *matCellDef="let category"> {{ category.name }} </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                <mat-cell *matCellDef="let category">
+                <div class="button-group">
+                    <button class="editar-btn" (click)="editCategory(category.id)">
+                        Editar
+                    </button>
+                    <button class="eliminar-btn" (click)="deleteCategory(category.id)">
+                        Eliminar
+                    </button>
+                </div>
+                </mat-cell>
+            </ng-container>
+            
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+            
+        </mat-table>
+        <mat-paginator
+                [length]="totalElements"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 20]"
+                (page)="onPageChange($event)"
+            ></mat-paginator>
+    </div>
+
+}@else {
+    <p>No hay categorias registradas</p>
+    }

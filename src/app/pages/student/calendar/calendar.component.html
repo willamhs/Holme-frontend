@@ -1,0 +1,16 @@
+<div class="calendar-container">
+    <div class="calendar-header">
+      <h1>Mi Calendario</h1>
+      <div class="calendar-actions">
+        <button mat-raised-button color="primary" (click)="toggleWeekends()" matTooltip="Mostrar/Ocultar fines de semana">
+          <mat-icon>weekend</mat-icon>
+          {{ calendarOptions.weekends ? 'Ocultar' : 'Mostrar' }} fines de semana
+        </button>
+        <button mat-raised-button color="accent" (click)="exportCalendar()" matTooltip="Exportar calendario">
+          <mat-icon>cloud_download</mat-icon>
+          Exportar
+        </button>
+      </div>
+    </div>
+    <full-calendar [options]="calendarOptions"></full-calendar>
+  </div>

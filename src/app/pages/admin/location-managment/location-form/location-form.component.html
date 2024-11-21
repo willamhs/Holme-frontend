@@ -1,0 +1,64 @@
+<div class="page-container">
+    <div class="category-container">
+        <h2>@if(locationId) { Editar } @else { Crear } Ubicacion</h2>
+        <form
+            [formGroup]="form"
+            (ngSubmit)="save()"
+            class="category-form"
+            autocomplete="off"
+        >
+
+            <mat-form-field>
+                <mat-label class="custom-label">Ubicacion</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="Nombre de la ubicacion"
+                    formControlName="location"
+                    class="text-input"
+                >
+                <mat-error>
+                    @if(form.get('location')!.hasError('required')) { Este campo es obligatorio }
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="custom-label">Ciudad</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="Nombre de la ubicacion"
+                    formControlName="city"
+                    class="text-input"
+                >
+                <mat-error>
+                    @if(form.get('city')!.hasError('required')) { Este campo es obligatorio }
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="custom-label">Estado</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="Nombre de la ubicacion"
+                    formControlName="country"
+                    class="text-input"
+                >
+                <mat-error>
+                    @if(form.get('country')!.hasError('required')) { Este campo es obligatorio }
+                </mat-error>
+            </mat-form-field>
+
+            <div class="close-btn">
+                <button mat-button type="button" class="cancel-button" routerLink="/admin/locations/list">
+                Cancelar
+                </button>
+                <button mat-raised-button class="confirm-button">
+                @if(locationId) { Actualizar } @else { Crear } Ubicacion
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

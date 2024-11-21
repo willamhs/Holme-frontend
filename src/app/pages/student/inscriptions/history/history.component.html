@@ -1,0 +1,70 @@
+<div class="inscription-history-container">
+  <h1 class="inscription-history-title">Historial de Inscripciones</h1>
+  
+  @if (isLoading) {
+    <div class="loading-spinner">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+  } @else if (inscriptions.length > 0) {
+    <div class="inscription-grid">
+      @for (inscription of inscriptions; track inscription.id) {
+        <mat-card class="inscription-card">
+          <mat-card-header [ngClass]="getStatusClass(inscription.inscriptionStatus)">
+            <mat-card-title>
+              <mat-icon class="event-icon">event</mat-icon>
+              {{ formatDate(inscription.createdAt) }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              <span class="status-chip">
+                {{ getStatusText(inscription.inscriptionStatus) }}
+              </span>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="inscription-total">
+              Total: {{ inscription.total | currency:'S/.':'symbol':'1.2-2' }}
+            </p>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Ver detalles de eventos
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="inscription-items">
+                @for (item of inscription.items; track item.eventId) {
+                  <div class="event-card">
+                    @if (item.eventDetails) {
+                      <img [src]="item.eventDetails.imagePath | apiImg" [alt]="item.nameEvent" class="event-image">
+                    } @else {
+                      <div class="event-image-placeholder">
+                        <mat-spinner diameter="40" color="accent"></mat-spinner>
+                      </div>
+                    }
+                    <div class="event-details">
+                      <h4>{{ item.nameEvent }}</h4>
+                      <div class="event-meta">
+                        <span class="event-quantity">
+                          <mat-icon>people</mat-icon>
+                          {{ item.quantity }}
+                        </span>
+                        <span class="event-price">
+                          {{ item.price | currency:'S/.':'symbol':'1.2-2' }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </mat-expansion-panel>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  } @else {
+    <div class="no-inscriptions">
+      <mat-icon class="empty-icon">event_busy</mat-icon>
+      <p>No se encontraron inscripciones en el historial.</p>
+      <button mat-raised-button color="primary" routerLink="/events">Explorar eventos</button>
+    </div>
+  }
+</div>

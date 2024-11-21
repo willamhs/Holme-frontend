@@ -1,0 +1,65 @@
+<div class="cart-container">
+  <mat-card class="cart-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Carrito de charlas</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      @if (cartItems.length > 0) {
+        <div class="cart-items">
+          @for (item of cartItems; track item.eventId) {
+            <mat-card class="cart-item">
+              <div class="item-image">
+                @if (item.eventDetails) {
+                  <img [src]="item.eventDetails.imagePath | apiImg" [alt]="item.nameEvent" class="event-image">
+                } @else {
+                  <div class="event-image-placeholder">
+                    <mat-spinner diameter="40" color="accent"></mat-spinner>
+                  </div>
+                }
+              </div>
+              <div class="item-details">
+                <h2>{{ item.nameEvent }}</h2>
+                <p class="item-quantity">Cantidad: {{ item.quantity }}</p>
+                <p class="item-price">{{ formatCurrency(item.price) }}</p>
+              </div>
+              <button mat-icon-button color="warn" (click)="removeItem(item.eventId)" aria-label="Eliminar charla" class="remove-button">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-card>
+          }
+        </div>
+        <mat-divider></mat-divider>
+        <div class="cart-summary">
+          <h2>Total: {{ formatCurrency(total) }}</h2>
+          <div class="cart-actions">
+            <button mat-stroked-button color="warn" (click)="clearCart()">
+              <mat-icon>remove_shopping_cart</mat-icon>
+              <span>Vaciar Carrito</span>
+            </button>
+            <button mat-raised-button color="primary" [disabled]="loading" (click)="proceedToCheckout()">
+              @if (!loading) {
+                <ng-container>
+                  <mat-icon>shopping_cart_checkout</mat-icon>
+                  <span>Proceder al Pago</span>
+                </ng-container>
+              } @else {
+                <ng-container>
+                  <mat-spinner diameter="24" color="accent"></mat-spinner>
+                  <span>Procesando...</span>
+                </ng-container>
+              }
+            </button>
+          </div>
+        </div>
+      } @else {
+        <div class="empty-cart">
+          <mat-icon class="empty-cart-icon">shopping_cart</mat-icon>
+          <p>Tu carrito está vacío.</p>
+          <button mat-raised-button color="primary" routerLink="/customer/catalog">Explorar charlas</button>
+        </div>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

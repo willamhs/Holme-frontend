@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:host {
+  display: block;
+  background-color: #eef0f2;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+.event-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.event-header {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.event-header-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(255, 146, 32, 0.9), rgba(255, 146, 32, 0));
+  padding: 40px;
+  color: white;
+}
+
+.event-header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  letter-spacing: -0.5px;
+}
+
+.event-tags {
+  display: flex;
+  gap: 10px;
+}
+
+.event-tag {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.event-tag.category {
+  background-color: #00796b;
+  color: white;
+}
+
+.event-tag.price {
+  background-color: #4A8FE7;
+  color: white;
+}
+
+.event-body {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.event-main-info {
+  flex: 2;
+}
+
+.event-meta, .event-description, .sidebar-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.meta-item mat-icon {
+  margin-right: 15px;
+  color: #00796b;
+  font-size: 24px;
+}
+
+.meta-item span {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.event-description h2 {
+  color: #0D21A1;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.event-description p {
+  line-height: 1.8;
+  color: #1E2019;
+  font-size: 1.1rem;
+}
+
+.event-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #00796b;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #3d998e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 146, 32, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(255, 146, 32, 0.3);
+}
+
+.btn-primary:disabled {
+  background-color: #ffd199;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #00796b;
+  border: 2px solid #00796b;
+}
+
+.btn-secondary:hover {
+  background-color: #00796b;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-primary mat-icon, .btn-secondary mat-icon {
+  margin-right: 8px;
+}
+
+.favorite {
+  color: #ff4081;
+}
+
+.event-sidebar {
+  flex: 1;
+}
+
+.sidebar-card h3 {
+  color: #0D21A1;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sidebar-item mat-icon {
+  margin-right: 15px;
+  color: #4A8FE7;
+  font-size: 20px;
+}
+
+.sidebar-item span {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.fab-back {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #00796b;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.fab-back:hover {
+  background-color: #0D21A1;
+  transform: scale(1.1);
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: #f44336;
+  font-size: 1.2rem;
+}
+
+.error-message mat-icon {
+  margin-right: 10px;
+  font-size: 2rem;
+}
+
+.event-schedule {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.event-schedule h2 {
+  color: #0D21A1;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.schedule-item {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-date {
+  font-weight: 600;
+  color: #00796b;
+  margin-bottom: 5px;
+}
+
+.schedule-time {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.schedule-description {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+
+
+.enrolled-schedule {
+  background-color: #e8f5e9; /* Light green background */
+  border-left: 4px solid #4caf50; /* Green left border */
+}
+
+.enrolled-schedule h3 {
+  color: #2e7d32; /* Dark green color for the title */
+  margin-bottom: 10px;
+}
+
+.enrolled-schedule p {
+  color: #1b5e20; /* Slightly darker green for the text */
+  margin-bottom: 15px;
+}
+
+.enrolled-schedule .schedule-item {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.enrolled-schedule .schedule-date {
+  font-weight: 600;
+  color: #1b5e20;
+}
+
+.enrolled-schedule .schedule-time {
+  color: #388e3c;
+}
+
+.calendar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: none;
+}
+
+.calendar-button mat-icon {
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .event-body {
+    flex-direction: column;
+  }
+
+  .event-header {
+    height: 300px;
+  }
+
+  .event-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .event-header-overlay {
+    padding: 20px;
+  }
+
+  .event-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+  }
+
+  .fab-back {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+}

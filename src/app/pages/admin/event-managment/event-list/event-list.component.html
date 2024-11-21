@@ -1,0 +1,59 @@
+<div class="catalog-container">
+  <header class="catalog-header">
+    <h1 class="catalog-title">Charlas con los mejores profesionales que te ayudaran a salir de tu crisis emocional</h1>
+    <p class="catalog-subtitle">Gestiona tus charlas que te ayuden con tu salud mental</p>
+  </header>
+
+  <div class="search-container">
+    <button mat-raised-button color="primary" (click)="createEvent()">
+      Nueva charla
+    </button>
+    <div class="search-bar">
+      <input type="text" 
+        placeholder="Buscar eventos..." 
+        class="search-input"
+        [(ngModel)]="filterText"
+        (input)="applyFilter($event)">
+      <button class="search-button" (click)="applyFilter($event)">
+        <i class="search-icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+  <div class="events-grid" *ngIf="!isLoading">
+    @for (event of filteredEvents; track event.id) {
+      <div>
+        <app-event-card 
+          [event]="event"
+          class="event-card"
+        ></app-event-card>
+        <div class="card-actions">
+          <button mat-icon-button color="primary" (click)="editEvent(event.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteEvent(event.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    }
+    @empty {
+      <div class="no-events">
+        <mat-icon>event_busy</mat-icon>
+        <p>No se encontraron charlas.</p>
+      </div>
+    }
+  </div>
+
+  <mat-paginator
+    [length]="totalElements"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)"
+    class="paginator"
+  >
+  </mat-paginator>
+</div>

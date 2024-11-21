@@ -1,0 +1,31 @@
+<main class="home-container">
+  <section class="recent-events">
+    <h2 class="section-title">Descubre tus charlas con los mejores especialistas</h2>
+    
+    <div class="search-container">
+      <mat-form-field class="search-field">
+        <mat-label>Buscar charlas</mat-label>
+        <input matInput type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Nombre de la charla o categoría">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="events-grid">
+      @if (isLoading) {
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Cargando charlas más recientes...</p>
+        </div>
+      } @else if (filteredEvents.length > 0) {
+        @for (event of filteredEvents; track event.id) {
+          <app-event-card [event]="event"></app-event-card>
+        }
+      } @else {
+        <div class="no-events">
+          <mat-icon>event_busy</mat-icon>
+          <p>No se encontraron charlas.</p>
+        </div>
+      }
+    </div>
+  </section>
+</main>

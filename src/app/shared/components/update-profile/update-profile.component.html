@@ -1,0 +1,75 @@
+<section class="update-profile-container">
+  <div class="update-profile-card">
+    <div class="card-header">
+      <h2>Actualizar Perfil</h2>
+      <p class="subtitle">Personaliza tu información en HoldMe</p>
+    </div>
+    
+    <div class="update-profile-form">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="profile-picture-section">
+          <div class="current-avatar">
+            <img [src]="currentProfileImagePath | apiImg" 
+                 [alt]="profileForm.get('firstName')?.value + ' ' + profileForm.get('lastName')?.value"
+                 class="avatar-image">
+            <p>Foto actual</p>
+          </div>
+          <div *ngIf="newProfileImagePreview" class="new-avatar">
+            <img [src]="newProfileImagePreview" 
+                 alt="Nueva foto de perfil"
+                 class="avatar-image">
+            <p>Nueva foto</p>
+            <button mat-stroked-button type="button" (click)="removeNewImage()" class="remove-image-button">
+              <mat-icon>close</mat-icon> Eliminar
+            </button>
+          </div>
+        </div>
+        <div class="profile-picture-actions">
+          <button mat-raised-button type="button" (click)="triggerFileInput()" class="change-photo-button">
+            <mat-icon>add_a_photo</mat-icon> Cambiar foto de perfil
+          </button>
+          <input #fileInput type="file" hidden (change)="onFileSelected($event)" accept="image/*">
+        </div>
+
+        <div class="form-fields">
+          <mat-form-field class="form-field">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="firstName" placeholder="Ingrese su nombre">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="profileForm.get('firstName')?.hasError('required')">Este campo es obligatorio</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="lastName" placeholder="Ingrese su apellido">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="profileForm.get('lastName')?.hasError('required')">Este campo es obligatorio</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="Ingrese su correo electrónico">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="profileForm.get('email')?.hasError('required')">Este campo es obligatorio</mat-error>
+            <mat-error *ngIf="profileForm.get('email')?.hasError('email')">Introduzca un correo electrónico válido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <mat-label>Ocupación</mat-label>
+            <input matInput formControlName="occupation" placeholder="Ingrese su carrera">
+            <mat-icon matSuffix>school</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="form-actions">
+          <button mat-button type="button" (click)="onCancel()" class="cancel-button">
+            <mat-icon>close</mat-icon> Cancelar
+          </button>
+          <button mat-raised-button color="primary" class="submit-button" type="submit" [disabled]="profileForm.invalid">
+            <mat-icon>save</mat-icon> Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
